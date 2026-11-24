@@ -2,83 +2,72 @@
 ## Clasificación Inteligente de Tickets con Procesamiento NLP y Visión por Computadora
 
 * **Autores:** Equipo de Investigación e Integración — Seminario III
-* **Repositorio:** `triaje-multimodal-clinico`
-* **Entorno:** Docker Desktop / FastAPI / React 18 + TypeScript / YOLOv8-cls / Scikit-Learn
-* **Fecha:** Noviembre 2026
+* **Repositorio:** [NIC-azo/triaje-inteligente-de-tickets-clinicos-seminario-iii-24-11](https://github.com/NIC-azo/triaje-inteligente-de-tickets-clinicos-seminario-iii-24-11)
+* **Stack Tecnológico:** FastAPI · React 18 + TypeScript · Scikit-Learn (`Calibrated LinearSVC`) · Ultralytics (`YOLOv8n-cls`) · Docker Compose
+* **Fecha:** 24 de noviembre de 2026
 
 ---
 
-## 1. Arquitectura Multimodal del Sistema
+## 1. Flujo de Arquitectura del Ticket Multimodal
 
-El sistema implementa una arquitectura desacoplada de doble canal (*late fusion*) donde el análisis textual y la evidencia visual se procesan de forma independiente para confluir en un motor determinista de reglas clínicas:
+El sistema implementa una arquitectura de **fusión tardía (*late fusion*)** en dos canales paralelos que alimentan un motor de reglas determinista:
 
 ```text
-+---------------------------------------------------------------------------------------------------+
-|                                 CLIENTE WEB / MÓVIL (React + Vite)                                |
-|  - Carga de texto libre y captura fotográfica directa (accept="image/*" capture="environment")    |
-|  - Fallback dinámico de IP local (http://${window.location.hostname}:8000)                        |
-+-------------------------------------------------+-------------------------------------------------+
-                                                  |
-                                                  | HTTP POST /triaje/evaluar-ticket (multipart/form-data)
-                                                  v
-+-------------------------------------------------+-------------------------------------------------+
-|                                BACKEND ASÍNCRONO (FastAPI + Uvicorn)                              |
-+-------------------------------------------------+-------------------------------------------------+
-                         |                                                 |
-         [Canal 1: Texto en Lenguaje Natural]              [Canal 2: Evidencia Visual de Cámara]
-                         |                                                 |
-                         v                                                 v
-+-------------------------------------------------+ +-----------------------------------------------+
-|         PIPELINE NLP (scikit-learn)             | |       PIPELINE DE VISIÓN (Ultralytics)        |
-|  - TF-IDF Vectorizer (1-2 n-gramas)             | |  - Normalización PIL + thumbnail(640, 640)    |
-|  - LinearSVC con CalibratedClassifierCV (cv=5)  | |  - YOLOv8n-cls (Pesos: best.pt, 2.83 MB)      |
-|  - Clasificador de Sentimiento (LogisticReg)   | |  - Inferencia Top-1 y Top-3 de clases         |
-|  - Extractor Híbrido NER (Regex + Diccionario)  | |  - Validación de Umbral (Confianza >= 0.70)   |
-|  - Filtro de Ambigüedad (Confianza < 0.65)      | |                                               |
-+-------------------------------------------------+ +-----------------------------------------------+
-                         \                                                 /
-                          \                                               /
-                           v                                             v
-+---------------------------------------------------------------------------------------------------+
-|                        MOTOR DE CORRELACIÓN CLÍNICA (triage_engine.py)                            |
-|  - Cruce de Intención y Entidades con Hallazgo Visual de Imagen                                    |
-|  - Detección de Contradicciones (Texto Falla vs. Imagen Normal / Trámite vs. Documento Ilegible)  |
-|  - Asignación de Prioridad (CRITICA, MEDIA, BAJA) y Cola Operativa                                |
-+-------------------------------------------------+-------------------------------------------------+
-                                                  |
-                                                  v JSON Consolidado (Latencia ~12-50 ms)
-+---------------------------------------------------------------------------------------------------+
-|                                     RESPUESTA ESTRUCTURADA                                        |
-|  { ticket_id, tiempo_ms, nlp: {...}, vision: {...}, triaje: { prioridad, cola, contradiccion } } |
-+---------------------------------------------------------------------------------------------------+
+  [ENTRADA MULTIMODAL: Cliente Web / Móvil (React + Vite)]
+     ├── Texto libre del ticket + Fotografía adjunta (cámara o archivo)
+     └── Petición HTTP POST /triaje/evaluar-ticket (multipart/form-data)
+                                    │
+                                    ▼
+  [ORQUESTADOR API REST: FastAPI + Uvicorn (Singleton Lifespan)]
+          ┌─────────────────────────┴─────────────────────────┐
+          ▼                                                   ▼
+  ┌───────────────────────────────┐         ┌─────────────────────────────────┐
+  │ CANAL 1: NLP (scikit-learn)   │         │ CANAL 2: VISIÓN (YOLOv8n-cls)   │
+  │ • TF-IDF (n-gramas 1-2)       │         │ • PIL RGB + thumbnail(640, 640) │
+  │ • CalibratedClassifierCV(SVC) │         │ • Inferencia best.pt (224x224)  │
+  │ • Sentimiento (LogisticReg)   │         │ • Top-1 / Top-3 probabilidades  │
+  │ • HybridNER (Regex + Dicc.)   │         │ • Umbral confianza >= 0.70      │
+  │ • Umbral ambigüedad < 0.65    │         └────────────────┬────────────────┘
+  └───────────────┬───────────────┘                          │
+                  └─────────────────────┬────────────────────┘
+                                        ▼
+  [MOTOR DE REGLAS CLÍNICAS: triage_engine.py (9 Directivas Deterministas)]
+     ├── Correlación Intención + Sentimiento/Urgencia × Clase Visual
+     ├── Detección de Contradicciones (Texto vs. Evidencia Fotográfica)
+     └── Mecanismo Fail-Safe ante combinaciones anómalas o baja confianza
+                                        │
+                                        ▼
+  [SALIDA ESTRUCTURADA JSON (~11 - 69 ms)]
+     └── { ticket_id, tiempo_procesamiento_ms, nlp, vision, triaje }
 ```
 
 ---
 
-## 2. Matriz de Reglas de Triaje Multimodal
+## 2. Tabla de Reglas de Cruce Texto–Imagen Implementadas (`triage_engine.py`)
 
-| # | Condición NLP (Texto) | Condición Visión (Imagen) | Prioridad | Cola Asignada | Acción Sugerida | Contradicción |
-| :-: | :--- | :--- | :---: | :--- | :--- | :-: |
-| **1** | `REPORTE_FALLA_EQUIPO` + (`NEGATIVO` o `ALTA`) | `EQUIPO_O_PANTALLA_CON_FALLA` ($\ge 0.70$) | **`CRITICA`** | Soporte Técnico de Equipos | `ATENCION_INMEDIATA_TECNICA` | No |
-| **2** | `REPORTE_FALLA_EQUIPO` (moderada) | `EQUIPO_O_PANTALLA_CON_FALLA` ($\ge 0.70$) | **`MEDIA`** | Soporte Técnico de Equipos | `PROGRAMAR_REVISION_EQUIPO` | No |
-| **3** | `OBSERVACION_DOC` o `GESTION_CITA` | `DOCUMENTO_BORROSO_O_INCOMPLETO` ($\ge 0.70$) | **`MEDIA`** | Validación Documental / Recepción | `SOLICITAR_NUEVA_IMAGEN` | Sí (si pide cita) |
-| **4** | `REPORTE_FALLA_EQUIPO` | `DOCUMENTO_LEGIBLE` o `INSUMO_O_ETIQUETA_OK` | **`MEDIA`** | Revisión Asistida / Mesa de Ayuda | `VERIFICAR_INCOHERENCIA_EVIDENCIA` | **Sí (Falla vs OK)** |
-| **5** | `INTENCION_AMBIGUA` ($< 0.65$) | `EQUIPO_O_PANTALLA_CON_FALLA` ($\ge 0.70$) | **`CRITICA`** | Soporte Técnico de Equipos | `DERIVACION_POR_EVIDENCIA_VISUAL` | No |
-| **6** | `INTENCION_AMBIGUA` ($< 0.65$) | `DOCUMENTO_BORROSO_O_INCOMPLETO` ($\ge 0.70$) | **`MEDIA`** | Validación Documental / Recepción | `SOLICITAR_NUEVA_IMAGEN` | No |
-| **7** | `GESTION_CITA` u `OBSERVACION_DOC` | `DOCUMENTO_LEGIBLE` o `INSUMO_O_ETIQUETA_OK` | **`BAJA`** | Admisión y Gestión de Citas | `PROCESAR_SOLICITUD_ESTANDAR` | No |
-| **8** | `CONSULTA_GENERAL_SERVICIO` | `DOCUMENTO_LEGIBLE` o `INSUMO_O_ETIQUETA_OK` | **`BAJA`** | Atención al Paciente / Informes | `RESPONDER_CONSULTA_INFORMATIVA` | No |
-| **9** | Cualquier canal no concluyente | Confianza visual $< 0.70$ o discrepancia | **`MEDIA`** | Triaje Manual Nivel 1 | `REVISION_MANUAL_OPERADOR` | No |
+| Regla | Condición NLP (Texto) | Condición Visión (Imagen) | Prioridad | Cola Asignada | Acción Sugerida | Contradicción |
+| :---: | :--- | :--- | :---: | :--- | :--- | :---: |
+| **R1** | `REPORTE_FALLA_EQUIPO` + (`NEGATIVO` o `ALTA`) | `EQUIPO_O_PANTALLA_CON_FALLA` ($\ge 0.70$) | **`CRITICA`** | Soporte Técnico de Equipos | `ATENCION_INMEDIATA_TECNICA` | `False` |
+| **R2** | `REPORTE_FALLA_EQUIPO` (moderada) | `EQUIPO_O_PANTALLA_CON_FALLA` ($\ge 0.70$) | **`MEDIA`** | Soporte Técnico de Equipos | `PROGRAMAR_REVISION_EQUIPO` | `False` |
+| **R3** | `REPORTE_FALLA_EQUIPO` | `DOCUMENTO_LEGIBLE` o `INSUMO_O_ETIQUETA_OK` ($\ge 0.70$) | **`MEDIA`** | Revisión Asistida / Mesa de Ayuda | `VERIFICAR_INCOHERENCIA_EVIDENCIA` | **`True`** |
+| **R4** | `OBSERVACION_DOCUMENTO_O_MUESTRA` o `GESTION_CITA_O_TURNO` | `DOCUMENTO_BORROSO_O_INCOMPLETO` ($\ge 0.70$) | **`MEDIA`** | Validación Documental / Recepción | `SOLICITAR_NUEVA_IMAGEN` | **`True`** *(si pide cita)* |
+| **R5** | `INTENCION_AMBIGUA` ($< 0.65$) | `EQUIPO_O_PANTALLA_CON_FALLA` ($\ge 0.70$) | **`CRITICA`** | Soporte Técnico de Equipos | `DERIVACION_POR_EVIDENCIA_VISUAL` | `False` |
+| **R6** | `INTENCION_AMBIGUA` ($< 0.65$) | `DOCUMENTO_BORROSO_O_INCOMPLETO` ($\ge 0.70$) | **`MEDIA`** | Validación Documental / Recepción | `SOLICITAR_NUEVA_IMAGEN` | `False` |
+| **R7** | `GESTION_CITA_O_TURNO` u `OBSERVACION_DOCUMENTO_O_MUESTRA` | `DOCUMENTO_LEGIBLE` o `INSUMO_O_ETIQUETA_OK` ($\ge 0.70$) | **`BAJA`** | Admisión y Gestión de Citas | `PROCESAR_SOLICITUD_ESTANDAR` | `False` |
+| **R8** | `CONSULTA_GENERAL_SERVICIO` | `DOCUMENTO_LEGIBLE` o `INSUMO_O_ETIQUETA_OK` ($\ge 0.70$) | **`BAJA`** | Atención al Paciente / Informes | `RESPONDER_CONSULTA_INFORMATIVA` | `False` |
+| **R9** | Combinación no concluyente *(Fallback)* | Confianza $< 0.70$ o discrepancia estructural | **`MEDIA`** | Triaje Manual Nivel 1 | `REVISION_MANUAL_OPERADOR` | `False` |
 
 ---
 
-## 3. Evidencia Real de Inferencia (API REST en Producción)
+## 3. Evidencia JSON de Casos Reales Evaluados
 
-Las siguientes respuestas fueron obtenidas directamente del endpoint `POST /triaje/evaluar-ticket`:
+### Caso A: Coherente Crítico (`ESCENARIO_1` — Regla 1)
+Reporte textual de falla crítica con confirmación visual de impresora térmica dañada:
 
-### Caso A: Escenario 1 — Falla Crítica Coherente (Prioridad CRÍTICA)
 ```json
 {
   "ticket_id": "TCK-BD2AEA8E",
+  "fecha_procesamiento": "2026-11-24T17:05:09.657238+00:00",
   "tiempo_procesamiento_ms": 56.25,
   "nlp": {
     "texto_original": "Urgente: La impresora térmica de Sede Sur tiene atasco de papel severo y no imprime los tickets, cabezal quemado",
@@ -91,11 +80,7 @@ Las siguientes respuestas fueron obtenidas directamente del endpoint `POST /tria
   "vision": {
     "clase_imagen": "EQUIPO_O_PANTALLA_CON_FALLA",
     "confianza_imagen": 1.0,
-    "es_confiable": true,
-    "top3": [
-      { "clase": "EQUIPO_O_PANTALLA_CON_FALLA", "confianza": 1.0 },
-      { "clase": "INSUMO_O_ETIQUETA_OK", "confianza": 0.0 }
-    ]
+    "es_confiable": true
   },
   "triaje": {
     "prioridad": "CRITICA",
@@ -107,42 +92,80 @@ Las siguientes respuestas fueron obtenidas directamente del endpoint `POST /tria
 }
 ```
 
-### Caso B: Escenario 4 — Incoherencia Texto vs. Imagen (Alerta Activada)
+### Caso B: Contradictorio con Imagen Ilegible (`ESCENARIO_5` — Regla 4)
+El paciente afirma adjuntar una orden médica clara para adelantar cita, pero la imagen está borrosa/incompleta:
+
 ```json
 {
-  "ticket_id": "TCK-9187BC61",
-  "tiempo_procesamiento_ms": 12.17,
+  "ticket_id": "TCK-982D0CB0",
+  "fecha_procesamiento": "2026-11-24T17:05:09.770032+00:00",
+  "tiempo_procesamiento_ms": 11.2,
   "nlp": {
-    "texto_original": "El escáner de código de barras está totalmente roto y no lee ninguna muestra en Consultorio 1",
-    "intencion": "REPORTE_FALLA_EQUIPO",
-    "confianza_intencion": 0.6717,
-    "sentimiento": "NEGATIVO",
-    "entidades": { "sede": "Consultorio 1", "equipo_insumo": "lector de código de barras", "tipo_documento": "NONE", "urgencia": "MEDIA" }
+    "texto_original": "Adjunto mi orden médica clara para adelantar cita urgente en Sede Central",
+    "intencion": "GESTION_CITA_O_TURNO",
+    "confianza_intencion": 0.7085,
+    "es_ambigua": false,
+    "sentimiento": "NEUTRAL",
+    "entidades": { "sede": "Sede Central", "equipo_insumo": "NONE", "tipo_documento": "orden médica", "urgencia": "ALTA" }
   },
   "vision": {
-    "clase_imagen": "INSUMO_O_ETIQUETA_OK",
+    "clase_imagen": "DOCUMENTO_BORROSO_O_INCOMPLETO",
     "confianza_imagen": 1.0,
     "es_confiable": true
   },
   "triaje": {
     "prioridad": "MEDIA",
-    "cola_asignada": "Revisión Asistida / Mesa de Ayuda",
-    "accion_sugerida": "VERIFICAR_INCOHERENCIA_EVIDENCIA",
+    "cola_asignada": "Validación Documental / Recepción",
+    "accion_sugerida": "SOLICITAR_NUEVA_IMAGEN",
     "alerta_contradiccion": true,
-    "motivo_decision": "Contradicción detectada: El texto reporta falla de equipo pero la imagen adjunta muestra un elemento en estado normal (INSUMO_O_ETIQUETA_OK). Requiere validación por operador."
+    "motivo_decision": "Evidencia documental ilegible, recortada o con reflejos. Contradicción: Se solicitó gestión de cita pero el soporte adjunto no es válido. Se solicita reenvío de nueva fotografía nítida para continuar el trámite."
+  }
+}
+```
+
+### Caso C: Prueba en Vivo con Imagen Externa de Cita (`TCK-58C7BA82` — Salvaguarda Fail-Safe Regla 9)
+Prueba en vivo combinando un texto claro de cita médica con un escaneo digital monocromático externo (`thumb_1200_1706.png`):
+
+```json
+{
+  "ticket_id": "TCK-58C7BA82",
+  "fecha_procesamiento": "2026-11-24T18:12:24.695762+00:00",
+  "tiempo_procesamiento_ms": 69.19,
+  "nlp": {
+    "texto_original": "Buenas tardes, adjunto este ticket para confirmar mi cita en Gastroenterología para el paciente Ricardo Rojas.",
+    "intencion": "GESTION_CITA_O_TURNO",
+    "confianza_intencion": 0.8946,
+    "es_ambigua": false,
+    "sentimiento": "NEUTRAL",
+    "entidades": { "sede": "NONE", "equipo_insumo": "NONE", "tipo_documento": "NONE", "urgencia": "BAJA" }
+  },
+  "vision": {
+    "clase_imagen": "EQUIPO_O_PANTALLA_CON_FALLA",
+    "confianza_imagen": 0.9576,
+    "es_confiable": true
+  },
+  "triaje": {
+    "prioridad": "MEDIA",
+    "cola_asignada": "Triaje Manual Nivel 1",
+    "accion_sugerida": "REVISION_MANUAL_OPERADOR",
+    "alerta_contradiccion": false,
+    "motivo_decision": "Baja confianza en la evidencia visual o combinación textual-visual no concluyente; derivar a revisión de operador humano."
   }
 }
 ```
 
 ---
 
-## 4. Retos Técnicos Resueltos e Innovación
+## 4. Análisis de Fallos Durante Entrenamiento y Pruebas, y su Resolución
 
-1. **Calibración de Probabilidades con `CalibratedClassifierCV`:**
-   Los clasificadores `LinearSVC` estándar maximizan el margen geométrico pero no entregan probabilidades posteriores verdaderas. Se integró una calibración sigmoidea mediante validación cruzada (`cv=5`), permitiendo que el umbral estricto de $< 0.65$ identifique de forma determinista textos vagos o informales (*"hola ayuda con esto porfa no pasa"*, confianza: `0.6069`), derivándolos a `INTENCION_AMBIGUA` para ser rescatados por la visión.
+1. **Calibración de Ambigüedad en NLP (`LinearSVC` sin probabilidades):**
+   * **Qué falló:** Un `LinearSVC` estándar entrega distancias al hiperplano en lugar de probabilidades reales, impidiendo fijar un umbral confiable (`< 0.65`) para textos vagos de celulares (ej. *"hola ayuda con esto porfa no pasa"*).
+   * **Cómo se resolvió:** Se envolvió el clasificador con `CalibratedClassifierCV(cv=5)` para obtener probabilidades calibradas (`0.6069` en el caso ambiguo, activando `INTENCION_AMBIGUA`) y se implementó un extractor `HybridNER` (Regex + diccionario normalizado) resistente a abreviaturas y errores ortográficos.
 
-2. **Mitigación de la Brecha de Dominio (*Domain Gap*) con Data Augmentation OpenCV:**
-   Las fotografías reales tomadas con celular presentan reflejos, desenfoque por movimiento y recortes. Mediante `01_generador_dataset_img.py` se inyectaron deformaciones de perspectiva, desenfoque gaussiano/motion blur, manchas radiales simulando flash y líneas de cabezal térmico sobre el conjunto base. Esto garantizó que `YOLOv8n-cls` aprendiera a discriminar por atributos de nitidez y fallas operativas reales con un **100% de Top-1 Accuracy** en validación.
+2. **Brecha de Dominio (*Domain Shift*) en Visión durante Pruebas en Vivo:**
+   * **Qué falló:** Al evaluar en el cliente web un escaneo digital vertical en escala de grises y fondo blanco plano (`thumb_1200_1706.png`, Modo `L`, 1200×1706 px), `YOLOv8n-cls` lo clasificó erróneamente como `EQUIPO_O_PANTALLA_CON_FALLA` (`95.76%`). Al haberse entrenado con fotografías RGB horizontales (1408×768 px) en entorno clínico físico, la compresión a 224×224 de un ticket monocromático replicó visualmente las franjas de impresora térmica dañada. Con texto vago (*"este es mi ticket"*), esto provocó un falso escalamiento a `CRITICA`.
+   * **Cómo se resolvió:** Se comprobó primero la resiliencia del diseño multimodal: al enviar un texto explícito de cita (`TCK-58C7BA82`), la **Regla 9 (*Fail-Safe*)** bloqueó el envío erróneo a Soporte Técnico y derivó el caso a `Triaje Manual Nivel 1` (`MEDIA`). Posteriormente, al validar con una **fotografía real tomada en entorno físico** de un ticket de EsSalud (`images (2).jpeg`, ticket en vivo `TCK-391A37B4`, *"buenas, adjunto este ticket para confirmar mi cita en medicina general para el paciente cueto"*), el modelo de visión clasificó correctamente **`DOCUMENTO_LEGIBLE` con 99.5% de confianza**, el NLP detectó `GESTION_CITA_O_TURNO` (`89.5%`) y el motor resolvió en **23.38 ms** como prioridad **`BAJA`** hacia **`Admisión y Gestión de Citas`**.
 
-3. **Inferencia de Ultra-Baja Latencia (~12 ms) en Red Local Wi-Fi:**
-   Las imágenes de celular pesan típicamente entre 3 y 8 MB. Para evitar cuellos de botella en la red local y saturación de memoria en Docker, el servicio de visión aplica redimensionamiento previo en memoria con `PIL.Image.thumbnail((640, 640))` junto con la versión optimizada de **PyTorch CPU**. Esto redujo los tiempos de inferencia total a **12–15 ms** por petición, permitiendo un uso fluido desde teléfonos móviles conectados a la Zona Wi-Fi de la PC.
+3. **Peso de Contenedor Docker y Latencia de Carga Móvil:**
+   * **Qué falló:** En las primeras compilaciones del backend, `ultralytics` intentaba descargar dependencias CUDA de >2.5 GB y fallaba OpenCV por falta de librerías gráficas del sistema (`libgl1`, `libglib2.0-0`).
+   * **Cómo se resolvió:** Se actualizó `backend/Dockerfile` preinstalando `torch` y `torchvision` en su versión CPU (`--index-url https://download.pytorch.org/whl/cpu`), añadiendo las dependencias de sistema mínimas y aplicando `PIL.Image.thumbnail((640, 640))` en `vision_service.py`, logrando tiempos de respuesta estables entre **11 y 69 ms**.
