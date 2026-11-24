@@ -1,0 +1,34 @@
+# Entorno y dependencias
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Modelos y pesos pesados
+*.pt
+*.pth
+*.joblib
+*.pkl
+training/dataset_clinico/
+training/raw_base/
+runs/
+
+# Node / Frontend
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# IDEs y SO
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

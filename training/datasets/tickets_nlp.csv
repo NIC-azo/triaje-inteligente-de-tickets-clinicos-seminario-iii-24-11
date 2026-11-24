@@ -1,0 +1,181 @@
+texto,intencion,sentimiento,sede,equipo_insumo,tipo_documento,urgencia
+La impresora térmica de Sede Sur tiene atasco de papel y no imprime tickets de atención,REPORTE_FALLA_EQUIPO,NEGATIVO,Sede Sur,impresora térmica,NONE,ALTA
+imp termica trabada no inprime nada xfa,REPORTE_FALLA_EQUIPO,NEGATIVO,NONE,impresora térmica,NONE,ALTA
+El lector de código de barras en Consultorio 1 no reconoce los tubos,REPORTE_FALLA_EQUIPO,NEGATIVO,Consultorio 1,lector de código de barras,tubo de muestra,MEDIA
+escaner no lee codigo de barras,REPORTE_FALLA_EQUIPO,NEGATIVO,NONE,lector de código de barras,NONE,MEDIA
+Analizador hematológico de Laboratorio Principal muestra alarma de reactivo y se detuvo,REPORTE_FALLA_EQUIPO,NEGATIVO,Laboratorio Principal,analizador hematológico,NONE,ALTA
+analizador hematologico offline lab,REPORTE_FALLA_EQUIPO,NEGATIVO,Laboratorio Principal,analizador hematológico,NONE,ALTA
+La centrífuga del Laboratorio Principal hace ruido extraño y no gira,REPORTE_FALLA_EQUIPO,NEGATIVO,Laboratorio Principal,centrífuga,NONE,ALTA
+centrifuga no prende en consultorio 2,REPORTE_FALLA_EQUIPO,NEGATIVO,Consultorio 2,centrífuga,NONE,ALTA
+Pantalla del monitor en Consultorio 3 parpadea y luego se pone negra,REPORTE_FALLA_EQUIPO,NEGATIVO,Consultorio 3,monitor,NONE,MEDIA
+monitor consultorio 1 negro no prende,REPORTE_FALLA_EQUIPO,NEGATIVO,Consultorio 1,monitor,NONE,ALTA
+La imp. térmica de admisión se quedó sin tóner y mancha las hojas,REPORTE_FALLA_EQUIPO,NEGATIVO,NONE,impresora térmica,NONE,MEDIA
+sin toner en impresora termica sede norte,REPORTE_FALLA_EQUIPO,NEGATIVO,Sede Norte,impresora térmica,NONE,MEDIA
+Impresora térmica imprime con líneas blancas horizontales y no se lee,REPORTE_FALLA_EQUIPO,NEGATIVO,NONE,impresora térmica,NONE,ALTA
+lineas blancas cabezal dañado imp termica,REPORTE_FALLA_EQUIPO,NEGATIVO,NONE,impresora térmica,NONE,ALTA
+Lector de código de barras parpadea en rojo y no escanea en Sede Central,REPORTE_FALLA_EQUIPO,NEGATIVO,Sede Central,lector de código de barras,NONE,MEDIA
+escaner desconectado no pasa nada,REPORTE_FALLA_EQUIPO,NEGATIVO,NONE,lector de código de barras,NONE,MEDIA
+Centrífuga de hematología bloqueada con tubos adentro urgente,REPORTE_FALLA_EQUIPO,NEGATIVO,NONE,centrífuga,tubo de muestra,ALTA
+ruido feo en centrifuga lab,REPORTE_FALLA_EQUIPO,NEGATIVO,Laboratorio Principal,centrífuga,NONE,MEDIA
+El analizador hematológico reporta error de calibración 504,REPORTE_FALLA_EQUIPO,NEGATIVO,NONE,analizador hematológico,NONE,ALTA
+error 504 analizador fuera de servicio,REPORTE_FALLA_EQUIPO,NEGATIVO,NONE,analizador hematológico,NONE,ALTA
+Reporto caída del monitor de recepción en Sede Sur,REPORTE_FALLA_EQUIPO,NEUTRAL,Sede Sur,monitor,NONE,MEDIA
+monitor sin señal de video consultorio 2,REPORTE_FALLA_EQUIPO,NEUTRAL,Consultorio 2,monitor,NONE,MEDIA
+La impresora térmica no jala el rollo de papel en Consultorio 1,REPORTE_FALLA_EQUIPO,NEGATIVO,Consultorio 1,impresora térmica,NONE,MEDIA
+papel ataskado en imp termica xfa,REPORTE_FALLA_EQUIPO,NEGATIVO,NONE,impresora térmica,NONE,ALTA
+Revisión técnica para lector de código de barras en Sede Norte,REPORTE_FALLA_EQUIPO,NEUTRAL,Sede Norte,lector de código de barras,NONE,BAJA
+calibrar escaner de barras hoy xfa,REPORTE_FALLA_EQUIPO,NEUTRAL,NONE,lector de código de barras,NONE,MEDIA
+Analizador hematológico requiere mantenimiento preventivo inmediato,REPORTE_FALLA_EQUIPO,NEUTRAL,NONE,analizador hematológico,NONE,MEDIA
+cambio de toner impresora termica recepcion,REPORTE_FALLA_EQUIPO,NEUTRAL,NONE,impresora térmica,NONE,BAJA
+Centrífuga desbalanceada vibra demasiado al centrifugar,REPORTE_FALLA_EQUIPO,NEGATIVO,NONE,centrífuga,NONE,ALTA
+urgnte reparar centrifuga no gira,REPORTE_FALLA_EQUIPO,NEGATIVO,NONE,centrífuga,NONE,ALTA
+El monitor de llamado de turnos en Sede Central se congeló,REPORTE_FALLA_EQUIPO,NEGATIVO,Sede Central,monitor,NONE,MEDIA
+pantalla congelada en consultorio 3,REPORTE_FALLA_EQUIPO,NEGATIVO,Consultorio 3,monitor,NONE,MEDIA
+Impresora térmica quemó el cabezal y bota humo leve,REPORTE_FALLA_EQUIPO,NEGATIVO,NONE,impresora térmica,NONE,ALTA
+cabezal quemado imp termica sede sur,REPORTE_FALLA_EQUIPO,NEGATIVO,Sede Sur,impresora térmica,NONE,ALTA
+Lector de código no enciende tras apagón en Consultorio 2,REPORTE_FALLA_EQUIPO,NEGATIVO,Consultorio 2,lector de código de barras,NONE,ALTA
+no prende lector de barras,REPORTE_FALLA_EQUIPO,NEGATIVO,NONE,lector de código de barras,NONE,MEDIA
+Equipo de laboratorio apagado inesperadamente con muestras en proceso,REPORTE_FALLA_EQUIPO,NEGATIVO,Laboratorio Principal,analizador hematológico,tubo de muestra,ALTA
+se apago analizador lab urgente,REPORTE_FALLA_EQUIPO,NEGATIVO,Laboratorio Principal,analizador hematológico,NONE,ALTA
+Agradezco enviar repuesto de rodillo para la imp térmica de Sede Norte,REPORTE_FALLA_EQUIPO,POSITIVO,Sede Norte,impresora térmica,NONE,MEDIA
+favor enviar tecnico para escaner gracias,REPORTE_FALLA_EQUIPO,POSITIVO,NONE,lector de código de barras,NONE,BAJA
+"Quedó pendiente revisión de la centrífuga, muchas gracias por el apoyo",REPORTE_FALLA_EQUIPO,POSITIVO,NONE,centrífuga,NONE,BAJA
+"Se agradece el mantenimiento previo, pero el monitor volvió a parpadear",REPORTE_FALLA_EQUIPO,POSITIVO,NONE,monitor,NONE,MEDIA
+Excelente servicio pero la impresora térmica volvió a fallar en Consultorio 1,REPORTE_FALLA_EQUIPO,POSITIVO,Consultorio 1,impresora térmica,NONE,MEDIA
+"Atasco de papel resuelto a medias en Sede Central, aún marca alerta",REPORTE_FALLA_EQUIPO,NEUTRAL,Sede Central,impresora térmica,NONE,MEDIA
+falla de conexion en escaner consultorio 3,REPORTE_FALLA_EQUIPO,NEGATIVO,Consultorio 3,lector de código de barras,NONE,MEDIA
+La orden médica enviada por el paciente está completamente borrosa e ilegible,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,orden médica,ALTA
+ord. med. borosa no se lee,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,orden médica,ALTA
+Comprobante de pago adjunto tiene los bordes cortados y no se ve el monto,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,comprobante de pago,MEDIA
+comprovante cortado xfa ayuda,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,comprobante de pago,ALTA
+Foto de la orden médica tiene un reflejo de flash que tapa el diagnóstico,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,orden médica,MEDIA
+reflejo de luz en foto orden med,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,orden médica,MEDIA
+En Sede Central se detectó un tubo de muestra sin rotular y sin nombre,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,Sede Central,tubo de muestra,NONE,ALTA
+tubo de muestra sin rotular urgente,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,tubo de muestra,NONE,ALTA
+La boleta adjunta está borrosa y no se puede verificar el número de operación,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,boleta,MEDIA
+boleta ilegible no pasa pago,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,boleta,MEDIA
+La etiqueta con código de barras está mal pegada y arrugada sobre el tubo,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,etiqueta,NONE,MEDIA
+etiqueta chueca en tubo de muestra,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,etiqueta,NONE,MEDIA
+"DNI del paciente sale recortado en la foto, falta el reverso",OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,DNI,MEDIA
+dni cortado no se ve numero,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,DNI,ALTA
+"Resultado de laboratorio incompleto, falta la hoja de microbiología",OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,resultado de laboratorio,MEDIA
+resultado de laboratorio boroso lab,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,Laboratorio Principal,NONE,resultado de laboratorio,MEDIA
+El consentimiento informado carece de la firma del médico tratante en Consultorio 1,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,Consultorio 1,NONE,consentimiento informado,ALTA
+falta firma en consentimiento informado,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,consentimiento informado,MEDIA
+Muestra hemolizada recibida en Laboratorio Principal requiere nueva toma,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,Laboratorio Principal,tubo de muestra,NONE,ALTA
+muestra rechazada tubo sin etiqueta lab,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,Laboratorio Principal,tubo de muestra,NONE,ALTA
+Adjunto orden médica para verificación de sello en Sede Norte,OBSERVACION_DOCUMENTO_O_MUESTRA,NEUTRAL,Sede Norte,NONE,orden médica,MEDIA
+ord med escaneada para revision,OBSERVACION_DOCUMENTO_O_MUESTRA,NEUTRAL,NONE,NONE,orden médica,BAJA
+Comprobante de pago presenta mancha en la fecha de emisión,OBSERVACION_DOCUMENTO_O_MUESTRA,NEUTRAL,NONE,NONE,comprobante de pago,MEDIA
+foto comprobante algo borroso,OBSERVACION_DOCUMENTO_O_MUESTRA,NEUTRAL,NONE,NONE,comprobante de pago,BAJA
+Documento DNI adjuntado en blanco y negro para validar identidad,OBSERVACION_DOCUMENTO_O_MUESTRA,NEUTRAL,NONE,NONE,DNI,BAJA
+dni adjunto validar xfa,OBSERVACION_DOCUMENTO_O_MUESTRA,NEUTRAL,NONE,NONE,DNI,BAJA
+Etiqueta identificadora suelta sobre el frasco de muestra en Consultorio 2,OBSERVACION_DOCUMENTO_O_MUESTRA,NEUTRAL,Consultorio 2,etiqueta,NONE,MEDIA
+etiqueta despegada en muestra,OBSERVACION_DOCUMENTO_O_MUESTRA,NEUTRAL,NONE,etiqueta,NONE,MEDIA
+Boleta de servicio remitida para control de auditoría,OBSERVACION_DOCUMENTO_O_MUESTRA,NEUTRAL,NONE,NONE,boleta,BAJA
+envio boleta para validar pago,OBSERVACION_DOCUMENTO_O_MUESTRA,NEUTRAL,NONE,NONE,boleta,BAJA
+Orden médica remitida con enmendadura en el diagnóstico principal en Sede Sur,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,Sede Sur,NONE,orden médica,ALTA
+orden med con tachadura no aceptan,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,orden médica,ALTA
+Tubo de muestra con volumen insuficiente para análisis hematológico,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,tubo de muestra,NONE,ALTA
+muestra con poco volumen rechazada,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,tubo de muestra,NONE,ALTA
+Consentimiento informado con huella borrosa en Consultorio 3,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,Consultorio 3,NONE,consentimiento informado,MEDIA
+huella ilegible consentimiento,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,consentimiento informado,MEDIA
+Resultado de laboratorio con discrepancia en el nombre del afiliado,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,resultado de laboratorio,ALTA
+error nombre en resultado laboratorio,OBSERVACION_DOCUMENTO_O_MUESTRA,NEGATIVO,NONE,NONE,resultado de laboratorio,MEDIA
+"Muchas gracias, ya envié la nueva foto nítida de la orden médica",OBSERVACION_DOCUMENTO_O_MUESTRA,POSITIVO,NONE,NONE,orden médica,BAJA
+adjunto nueva ord med clara gracias,OBSERVACION_DOCUMENTO_O_MUESTRA,POSITIVO,NONE,NONE,orden médica,BAJA
+"Agradezco su atención, adjunto el comprobante de pago completo y legible",OBSERVACION_DOCUMENTO_O_MUESTRA,POSITIVO,NONE,NONE,comprobante de pago,BAJA
+aqui va el comprobante claro gracias,OBSERVACION_DOCUMENTO_O_MUESTRA,POSITIVO,NONE,NONE,comprobante de pago,BAJA
+"Excelente, ya corregí el DNI y adjunto ambas caras con buena luz",OBSERVACION_DOCUMENTO_O_MUESTRA,POSITIVO,NONE,NONE,DNI,BAJA
+dni nitido adjunto muchas gracias,OBSERVACION_DOCUMENTO_O_MUESTRA,POSITIVO,NONE,NONE,DNI,BAJA
+orden medica recibida conforme para recepcion sede central,OBSERVACION_DOCUMENTO_O_MUESTRA,POSITIVO,Sede Central,NONE,orden médica,BAJA
+Necesito reprogramar mi cita médica urgente para el día viernes en Sede Central,GESTION_CITA_O_TURNO,NEUTRAL,Sede Central,NONE,NONE,ALTA
+reprogramar cita urgente xfa,GESTION_CITA_O_TURNO,NEUTRAL,NONE,NONE,NONE,ALTA
+Por favor adelantar horario de mi turno en Consultorio 2 ya que tengo emergencia,GESTION_CITA_O_TURNO,NEGATIVO,Consultorio 2,NONE,NONE,ALTA
+adelantar turno hoy paciente esperando,GESTION_CITA_O_TURNO,NEGATIVO,NONE,NONE,NONE,ALTA
+Quisiera consultar si hay disponibilidad de turno para ecografía en Sede Norte,GESTION_CITA_O_TURNO,NEUTRAL,Sede Norte,NONE,NONE,MEDIA
+hay turno para ecografia sede norte?,GESTION_CITA_O_TURNO,NEUTRAL,Sede Norte,NONE,NONE,MEDIA
+Deseo confirmar mi reserva de turno para análisis de sangre en Laboratorio Principal,GESTION_CITA_O_TURNO,NEUTRAL,Laboratorio Principal,NONE,NONE,MEDIA
+confirmar turno laboratorio lab,GESTION_CITA_O_TURNO,NEUTRAL,Laboratorio Principal,NONE,NONE,MEDIA
+Solicito cancelar la atención médica programada para mañana en Consultorio 1,GESTION_CITA_O_TURNO,NEUTRAL,Consultorio 1,NONE,NONE,MEDIA
+cancelar atencion de manana,GESTION_CITA_O_TURNO,NEUTRAL,NONE,NONE,NONE,MEDIA
+"No podré asistir a mi turno en Sede Sur, pido cambio de fecha por favor",GESTION_CITA_O_TURNO,NEUTRAL,Sede Sur,NONE,NONE,MEDIA
+cambiar fecha de turno sede sur,GESTION_CITA_O_TURNO,NEUTRAL,Sede Sur,NONE,NONE,MEDIA
+Requiero adelantar mi cita con especialista por dolor agudo urgente,GESTION_CITA_O_TURNO,NEGATIVO,NONE,NONE,NONE,ALTA
+urgente adelantar cita dolor fuerte,GESTION_CITA_O_TURNO,NEGATIVO,NONE,NONE,NONE,ALTA
+Confirmar cita médica con DNI 44321098 en Consultorio 3,GESTION_CITA_O_TURNO,NEUTRAL,Consultorio 3,NONE,DNI,BAJA
+confirmar cita dni 44321098,GESTION_CITA_O_TURNO,NEUTRAL,NONE,NONE,DNI,BAJA
+Lamentablemente debo anular mi turno asignado para esta tarde,GESTION_CITA_O_TURNO,NEGATIVO,NONE,NONE,NONE,MEDIA
+anular turno hoy xfa,GESTION_CITA_O_TURNO,NEGATIVO,NONE,NONE,NONE,MEDIA
+Por favor reprogramar cita de cardiología para la próxima semana en Sede Central,GESTION_CITA_O_TURNO,NEUTRAL,Sede Central,NONE,NONE,MEDIA
+reprogramar cardiologia sede central,GESTION_CITA_O_TURNO,NEUTRAL,Sede Central,NONE,NONE,MEDIA
+Consulta de disponibilidad de cupo para resonancia magnética,GESTION_CITA_O_TURNO,NEUTRAL,NONE,NONE,NONE,MEDIA
+cupos disponibles para resonancia?,GESTION_CITA_O_TURNO,NEUTRAL,NONE,NONE,NONE,MEDIA
+Solicito adelantar turno de toma de muestra en Laboratorio Principal,GESTION_CITA_O_TURNO,NEUTRAL,Laboratorio Principal,NONE,NONE,MEDIA
+adelantar turno toma de muestra,GESTION_CITA_O_TURNO,NEUTRAL,NONE,NONE,NONE,MEDIA
+Quiero cambiar mi cita a Consultorio 2 porque no llego a tiempo,GESTION_CITA_O_TURNO,NEUTRAL,Consultorio 2,NONE,NONE,MEDIA
+cambio a consultorio 2 xfa,GESTION_CITA_O_TURNO,NEUTRAL,Consultorio 2,NONE,NONE,MEDIA
+Confirmar recepción de turno para el área de pediatría en Sede Norte,GESTION_CITA_O_TURNO,NEUTRAL,Sede Norte,NONE,NONE,BAJA
+turno pediatria sede norte confirmar,GESTION_CITA_O_TURNO,NEUTRAL,Sede Norte,NONE,NONE,BAJA
+Cancelar turno de control postoperatorio programado para el martes,GESTION_CITA_O_TURNO,NEUTRAL,NONE,NONE,NONE,MEDIA
+cancelar control postoperatorio,GESTION_CITA_O_TURNO,NEUTRAL,NONE,NONE,NONE,MEDIA
+Reprogramar cita de laboratorio ya que el paciente no pudo hacer el ayuno,GESTION_CITA_O_TURNO,NEGATIVO,Laboratorio Principal,NONE,NONE,MEDIA
+reprogramar lab no hizo ayuno,GESTION_CITA_O_TURNO,NEGATIVO,Laboratorio Principal,NONE,NONE,MEDIA
+"Se me complica el horario, ¿pueden cambiar mi turno a la tarde en Sede Sur?",GESTION_CITA_O_TURNO,NEUTRAL,Sede Sur,NONE,NONE,MEDIA
+cambiar turno para la tarde,GESTION_CITA_O_TURNO,NEUTRAL,NONE,NONE,NONE,BAJA
+Confirmar asistencia a cita en Consultorio 1 con orden médica en mano,GESTION_CITA_O_TURNO,NEUTRAL,Consultorio 1,NONE,orden médica,BAJA
+confirmo cita con orden medica,GESTION_CITA_O_TURNO,NEUTRAL,NONE,NONE,orden médica,BAJA
+Llevo esperando dos horas y aún no me llaman para mi turno en Sede Central,GESTION_CITA_O_TURNO,NEGATIVO,Sede Central,NONE,NONE,ALTA
+retraso de turno dos horas esperando,GESTION_CITA_O_TURNO,NEGATIVO,NONE,NONE,NONE,ALTA
+"Agradezco mucho si me pueden mover la cita para las 10am, muchas gracias",GESTION_CITA_O_TURNO,POSITIVO,NONE,NONE,NONE,BAJA
+mover cita 10am gracias xfa,GESTION_CITA_O_TURNO,POSITIVO,NONE,NONE,NONE,BAJA
+Muchas gracias por confirmar mi cita médica en Consultorio 3,GESTION_CITA_O_TURNO,POSITIVO,Consultorio 3,NONE,NONE,BAJA
+cita confirmada excelente atencion gracias,GESTION_CITA_O_TURNO,POSITIVO,NONE,NONE,NONE,BAJA
+Agradezco la gentileza al reprogramar mi turno de ecografía en Sede Norte,GESTION_CITA_O_TURNO,POSITIVO,Sede Norte,NONE,NONE,BAJA
+gracias por adelantar el turno,GESTION_CITA_O_TURNO,POSITIVO,NONE,NONE,NONE,BAJA
+Turno reservado exitosamente para toma de muestras en Laboratorio Principal,GESTION_CITA_O_TURNO,POSITIVO,Laboratorio Principal,NONE,NONE,BAJA
+¿Cuáles son los requisitos de ayuno para el examen de glucosa y perfil lipídico?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,NONE,NONE,NONE,MEDIA
+cuantas horas ayuno lab xfa,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Laboratorio Principal,NONE,NONE,MEDIA
+¿En qué horario atienden para toma de muestras de sangre en Sede Central?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Sede Central,NONE,NONE,BAJA
+horario atencion sede central toma muestra,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Sede Central,NONE,NONE,BAJA
+¿Dónde queda ubicada la Sede Norte y cuáles son las referencias de llegada?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Sede Norte,NONE,NONE,BAJA
+donde queda la sede norte?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Sede Norte,NONE,NONE,BAJA
+¿Cuánto tiempo demoran en entregar los resultados de laboratorio de hematología?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Laboratorio Principal,NONE,resultado de laboratorio,MEDIA
+cuando entregan resultados de laboratorio?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,NONE,NONE,resultado de laboratorio,MEDIA
+¿Se puede tomar agua antes de la prueba de sangre en Sede Sur?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Sede Sur,NONE,NONE,BAJA
+se puede tomar agua antes examen?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,NONE,NONE,NONE,BAJA
+¿Cuál es la preparación necesaria para una ecografía abdominal completa?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,NONE,NONE,NONE,MEDIA
+preparacion para ecografia abdominal requisitos,CONSULTA_GENERAL_SERVICIO,NEUTRAL,NONE,NONE,NONE,MEDIA
+¿Cuáles son los medios de pago aceptados y emiten boleta electrónica?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,NONE,NONE,boleta,BAJA
+aceptan tarjeta y emiten boleta?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,NONE,NONE,boleta,BAJA
+¿Atienden emergencias los domingos en Laboratorio Principal?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Laboratorio Principal,NONE,NONE,MEDIA
+atienden domingos en laboratorio?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Laboratorio Principal,NONE,NONE,BAJA
+¿Es obligatorio llevar el DNI físico original o aceptan digital?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,NONE,NONE,DNI,BAJA
+aceptan dni digital para atencion?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,NONE,NONE,DNI,BAJA
+¿Dónde puedo descargar los resultados de laboratorio por la página web?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,NONE,NONE,resultado de laboratorio,BAJA
+descargar resultado de laboratorio web,CONSULTA_GENERAL_SERVICIO,NEUTRAL,NONE,NONE,resultado de laboratorio,BAJA
+¿Qué costo tiene la prueba de orina y cultivo en Sede Norte?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Sede Norte,NONE,NONE,BAJA
+precio analisis de orina sede norte,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Sede Norte,NONE,NONE,BAJA
+¿En qué piso se encuentra el Consultorio 1 de medicina general?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Consultorio 1,NONE,NONE,BAJA
+ubicacion consultorio 1 que piso?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Consultorio 1,NONE,NONE,BAJA
+¿Requisitos para examen de orina de 24 horas?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,NONE,NONE,NONE,MEDIA
+como recolectar orina 24 horas,CONSULTA_GENERAL_SERVICIO,NEUTRAL,NONE,NONE,NONE,MEDIA
+¿Tienen estacionamiento disponible para pacientes en Sede Sur?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Sede Sur,NONE,NONE,BAJA
+estacionamiento libre en sede sur?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Sede Sur,NONE,NONE,BAJA
+¿Atienden a niños para análisis hematológico en Sede Central?,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Sede Central,NONE,NONE,BAJA
+analisis de sangre para ninos sede central,CONSULTA_GENERAL_SERVICIO,NEUTRAL,Sede Central,NONE,NONE,BAJA
+"Nadie responde al teléfono de informes, necesito saber horario de atención urgente",CONSULTA_GENERAL_SERVICIO,NEGATIVO,NONE,NONE,NONE,ALTA
+no contestan informes horario atencion,CONSULTA_GENERAL_SERVICIO,NEGATIVO,NONE,NONE,NONE,ALTA
+"Pésima información en la web, no explican cómo recoger resultados de laboratorio",CONSULTA_GENERAL_SERVICIO,NEGATIVO,NONE,NONE,resultado de laboratorio,MEDIA
+no entiendo requisitos de ayuno confusos,CONSULTA_GENERAL_SERVICIO,NEGATIVO,NONE,NONE,NONE,MEDIA
+Llevo días esperando respuesta sobre la entrega de resultado de laboratorio,CONSULTA_GENERAL_SERVICIO,NEGATIVO,NONE,NONE,resultado de laboratorio,ALTA
+demora excesiva en informes lab,CONSULTA_GENERAL_SERVICIO,NEGATIVO,Laboratorio Principal,NONE,NONE,MEDIA
+No me dijeron que debía estar en ayunas y perdí la mañana,CONSULTA_GENERAL_SERVICIO,NEGATIVO,NONE,NONE,NONE,ALTA
+falto avisar de ayuno perdi tiempo,CONSULTA_GENERAL_SERVICIO,NEGATIVO,NONE,NONE,NONE,ALTA
+Muchas gracias por la información detallada sobre los requisitos de ayuno,CONSULTA_GENERAL_SERVICIO,POSITIVO,NONE,NONE,NONE,BAJA
+gracias por aclarar requisitos de ayuno,CONSULTA_GENERAL_SERVICIO,POSITIVO,NONE,NONE,NONE,BAJA
+"Excelente atención telefónica al consultar por los horarios de Sede Central, gracias",CONSULTA_GENERAL_SERVICIO,POSITIVO,Sede Central,NONE,NONE,BAJA
+muy claros los horarios de atencion gracias,CONSULTA_GENERAL_SERVICIO,POSITIVO,NONE,NONE,NONE,BAJA
+"Agradezco la pronta entrega de mi resultado de laboratorio, muy amables",CONSULTA_GENERAL_SERVICIO,POSITIVO,NONE,NONE,resultado de laboratorio,BAJA
+resultado entregado a tiempo excelente servicio,CONSULTA_GENERAL_SERVICIO,POSITIVO,NONE,NONE,resultado de laboratorio,BAJA
+"Muchas gracias por orientarme hacia el Consultorio 2, todo muy rápido",CONSULTA_GENERAL_SERVICIO,POSITIVO,Consultorio 2,NONE,NONE,BAJA

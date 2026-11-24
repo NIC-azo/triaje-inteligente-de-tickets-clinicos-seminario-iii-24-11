@@ -1,0 +1,130 @@
+{
+  "metricas_validacion": {
+    "top1_accuracy": 1.0,
+    "confusion_matrix": [
+      [
+        10,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        10,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        10,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        10
+      ]
+    ],
+    "average_confidence_by_class": {
+      "DOCUMENTO_BORROSO_O_INCOMPLETO": 0.9999134480953217,
+      "DOCUMENTO_LEGIBLE": 0.9999040067195892,
+      "EQUIPO_O_PANTALLA_CON_FALLA": 0.9999954581260682,
+      "INSUMO_O_ETIQUETA_OK": 0.9999565482139587
+    },
+    "classes": [
+      "DOCUMENTO_BORROSO_O_INCOMPLETO",
+      "DOCUMENTO_LEGIBLE",
+      "EQUIPO_O_PANTALLA_CON_FALLA",
+      "INSUMO_O_ETIQUETA_OK"
+    ],
+    "total_val_samples": 40
+  },
+  "casos_prueba": [
+    {
+      "clase_esperada": "DOCUMENTO_BORROSO_O_INCOMPLETO",
+      "imagen_evaluada": "documento_borroso_o_incompleto_val_001.jpg",
+      "clase_imagen": "DOCUMENTO_BORROSO_O_INCOMPLETO",
+      "confianza_imagen": 0.9998,
+      "es_correcta": true,
+      "top3": [
+        {
+          "clase": "DOCUMENTO_BORROSO_O_INCOMPLETO",
+          "confianza": 0.9998
+        },
+        {
+          "clase": "INSUMO_O_ETIQUETA_OK",
+          "confianza": 0.0001
+        },
+        {
+          "clase": "EQUIPO_O_PANTALLA_CON_FALLA",
+          "confianza": 0.0
+        }
+      ]
+    },
+    {
+      "clase_esperada": "DOCUMENTO_LEGIBLE",
+      "imagen_evaluada": "documento_legible_val_001.jpg",
+      "clase_imagen": "DOCUMENTO_LEGIBLE",
+      "confianza_imagen": 1.0,
+      "es_correcta": true,
+      "top3": [
+        {
+          "clase": "DOCUMENTO_LEGIBLE",
+          "confianza": 1.0
+        },
+        {
+          "clase": "DOCUMENTO_BORROSO_O_INCOMPLETO",
+          "confianza": 0.0
+        },
+        {
+          "clase": "EQUIPO_O_PANTALLA_CON_FALLA",
+          "confianza": 0.0
+        }
+      ]
+    },
+    {
+      "clase_esperada": "EQUIPO_O_PANTALLA_CON_FALLA",
+      "imagen_evaluada": "equipo_o_pantalla_con_falla_val_001.jpg",
+      "clase_imagen": "EQUIPO_O_PANTALLA_CON_FALLA",
+      "confianza_imagen": 1.0,
+      "es_correcta": true,
+      "top3": [
+        {
+          "clase": "EQUIPO_O_PANTALLA_CON_FALLA",
+          "confianza": 1.0
+        },
+        {
+          "clase": "INSUMO_O_ETIQUETA_OK",
+          "confianza": 0.0
+        },
+        {
+          "clase": "DOCUMENTO_BORROSO_O_INCOMPLETO",
+          "confianza": 0.0
+        }
+      ]
+    },
+    {
+      "clase_esperada": "INSUMO_O_ETIQUETA_OK",
+      "imagen_evaluada": "insumo_o_etiqueta_ok_val_001.jpg",
+      "clase_imagen": "INSUMO_O_ETIQUETA_OK",
+      "confianza_imagen": 1.0,
+      "es_correcta": true,
+      "top3": [
+        {
+          "clase": "INSUMO_O_ETIQUETA_OK",
+          "confianza": 1.0
+        },
+        {
+          "clase": "DOCUMENTO_BORROSO_O_INCOMPLETO",
+          "confianza": 0.0
+        },
+        {
+          "clase": "EQUIPO_O_PANTALLA_CON_FALLA",
+          "confianza": 0.0
+        }
+      ]
+    }
+  ]
+}

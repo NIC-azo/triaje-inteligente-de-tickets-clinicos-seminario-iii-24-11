@@ -1,0 +1,132 @@
+[
+  {
+    "caso_id": "CASO_1_FALLA_CRITICA",
+    "descripcion": "Falla crítica de impresora térmica en Sede Sur",
+    "resultado": {
+      "texto": "Urgente: La impresora térmica de Sede Sur tiene atasco de papel y no imprime nada, cabezal dañado",
+      "intencion": "REPORTE_FALLA_EQUIPO",
+      "intencion_base": "REPORTE_FALLA_EQUIPO",
+      "confianza_intencion": 0.9275,
+      "es_ambigua": false,
+      "umbral_aplicado": 0.65,
+      "sentimiento": "NEGATIVO",
+      "confianza_sentimiento": 0.4975,
+      "entidades": {
+        "sede": "Sede Sur",
+        "equipo_insumo": "impresora térmica",
+        "tipo_documento": "NONE",
+        "urgencia": "ALTA"
+      },
+      "probabilidades_detalle": {
+        "CONSULTA_GENERAL_SERVICIO": 0.0456,
+        "GESTION_CITA_O_TURNO": 0.0074,
+        "OBSERVACION_DOCUMENTO_O_MUESTRA": 0.0196,
+        "REPORTE_FALLA_EQUIPO": 0.9275
+      }
+    }
+  },
+  {
+    "caso_id": "CASO_2_DOCUMENTO_BORROSO",
+    "descripcion": "Orden médica borrosa y recortada enviada por paciente",
+    "resultado": {
+      "texto": "El paciente envió foto de orden médica muy borosa y cortada en los bordes, no se lee",
+      "intencion": "OBSERVACION_DOCUMENTO_O_MUESTRA",
+      "intencion_base": "OBSERVACION_DOCUMENTO_O_MUESTRA",
+      "confianza_intencion": 0.8962,
+      "es_ambigua": false,
+      "umbral_aplicado": 0.65,
+      "sentimiento": "NEGATIVO",
+      "confianza_sentimiento": 0.5614,
+      "entidades": {
+        "sede": "NONE",
+        "equipo_insumo": "NONE",
+        "tipo_documento": "orden médica",
+        "urgencia": "MEDIA"
+      },
+      "probabilidades_detalle": {
+        "CONSULTA_GENERAL_SERVICIO": 0.0306,
+        "GESTION_CITA_O_TURNO": 0.0277,
+        "OBSERVACION_DOCUMENTO_O_MUESTRA": 0.8962,
+        "REPORTE_FALLA_EQUIPO": 0.0456
+      }
+    }
+  },
+  {
+    "caso_id": "CASO_3_GESTION_CITA",
+    "descripcion": "Reprogramación de cita médica para próxima semana",
+    "resultado": {
+      "texto": "Buenas tardes, solicito por favor reprogramar mi cita médica para la próxima semana",
+      "intencion": "GESTION_CITA_O_TURNO",
+      "intencion_base": "GESTION_CITA_O_TURNO",
+      "confianza_intencion": 0.9473,
+      "es_ambigua": false,
+      "umbral_aplicado": 0.65,
+      "sentimiento": "NEUTRAL",
+      "confianza_sentimiento": 0.4466,
+      "entidades": {
+        "sede": "NONE",
+        "equipo_insumo": "NONE",
+        "tipo_documento": "NONE",
+        "urgencia": "MEDIA"
+      },
+      "probabilidades_detalle": {
+        "CONSULTA_GENERAL_SERVICIO": 0.0165,
+        "GESTION_CITA_O_TURNO": 0.9473,
+        "OBSERVACION_DOCUMENTO_O_MUESTRA": 0.0316,
+        "REPORTE_FALLA_EQUIPO": 0.0046
+      }
+    }
+  },
+  {
+    "caso_id": "CASO_4_CONSULTA_AYUNO",
+    "descripcion": "Consulta de requisitos de ayuno para examen de laboratorio",
+    "resultado": {
+      "texto": "Buenos días, ¿cuáles son los requisitos de ayuno para el análisis de glucosa en el laboratorio?",
+      "intencion": "CONSULTA_GENERAL_SERVICIO",
+      "intencion_base": "CONSULTA_GENERAL_SERVICIO",
+      "confianza_intencion": 0.928,
+      "es_ambigua": false,
+      "umbral_aplicado": 0.65,
+      "sentimiento": "NEUTRAL",
+      "confianza_sentimiento": 0.481,
+      "entidades": {
+        "sede": "Laboratorio Principal",
+        "equipo_insumo": "NONE",
+        "tipo_documento": "NONE",
+        "urgencia": "MEDIA"
+      },
+      "probabilidades_detalle": {
+        "CONSULTA_GENERAL_SERVICIO": 0.928,
+        "GESTION_CITA_O_TURNO": 0.0145,
+        "OBSERVACION_DOCUMENTO_O_MUESTRA": 0.0528,
+        "REPORTE_FALLA_EQUIPO": 0.0047
+      }
+    }
+  },
+  {
+    "caso_id": "CASO_5_AMBIGUO_VAGO",
+    "descripcion": "Caso ambiguo/vago para evaluar umbral < 0.65",
+    "resultado": {
+      "texto": "hola ayuda con esto porfa no pasa",
+      "intencion": "INTENCION_AMBIGUA",
+      "intencion_base": "OBSERVACION_DOCUMENTO_O_MUESTRA",
+      "confianza_intencion": 0.6069,
+      "es_ambigua": true,
+      "umbral_aplicado": 0.65,
+      "sentimiento": "NEGATIVO",
+      "confianza_sentimiento": 0.6647,
+      "entidades": {
+        "sede": "NONE",
+        "equipo_insumo": "NONE",
+        "tipo_documento": "NONE",
+        "urgencia": "MEDIA"
+      },
+      "probabilidades_detalle": {
+        "CONSULTA_GENERAL_SERVICIO": 0.0121,
+        "GESTION_CITA_O_TURNO": 0.0224,
+        "OBSERVACION_DOCUMENTO_O_MUESTRA": 0.6069,
+        "REPORTE_FALLA_EQUIPO": 0.3587
+      }
+    }
+  }
+]

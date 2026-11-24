@@ -1,0 +1,344 @@
+[
+  {
+    "escenario_id": "ESCENARIO_1_CRITICO_COHERENTE",
+    "titulo": "1. Crítico Coherente: Falla de Impresora + Pantalla/Equipo con Falla",
+    "cumplio_criterios": true,
+    "respuesta_api": {
+      "ticket_id": "TCK-BD2AEA8E",
+      "fecha_procesamiento": "2026-11-24T17:05:09.657238+00:00",
+      "tiempo_procesamiento_ms": 56.25,
+      "nlp": {
+        "texto_original": "Urgente: La impresora térmica de Sede Sur tiene atasco de papel severo y no imprime los tickets, cabezal quemado",
+        "intencion": "REPORTE_FALLA_EQUIPO",
+        "intencion_base": "REPORTE_FALLA_EQUIPO",
+        "confianza_intencion": 0.8952,
+        "es_ambigua": false,
+        "sentimiento": "NEGATIVO",
+        "confianza_sentimiento": 0.4865,
+        "entidades": {
+          "sede": "Sede Sur",
+          "equipo_insumo": "impresora térmica",
+          "tipo_documento": "NONE",
+          "urgencia": "ALTA"
+        },
+        "distribucion_probabilidades": {
+          "CONSULTA_GENERAL_SERVICIO": 0.0777,
+          "GESTION_CITA_O_TURNO": 0.0057,
+          "OBSERVACION_DOCUMENTO_O_MUESTRA": 0.0214,
+          "REPORTE_FALLA_EQUIPO": 0.8952
+        }
+      },
+      "vision": {
+        "clase_imagen": "EQUIPO_O_PANTALLA_CON_FALLA",
+        "confianza_imagen": 1.0,
+        "es_confiable": true,
+        "top3": [
+          {
+            "clase": "EQUIPO_O_PANTALLA_CON_FALLA",
+            "confianza": 1.0
+          },
+          {
+            "clase": "INSUMO_O_ETIQUETA_OK",
+            "confianza": 0.0
+          },
+          {
+            "clase": "DOCUMENTO_BORROSO_O_INCOMPLETO",
+            "confianza": 0.0
+          }
+        ]
+      },
+      "triaje": {
+        "prioridad": "CRITICA",
+        "cola_asignada": "Soporte Técnico de Equipos",
+        "accion_sugerida": "ATENCION_INMEDIATA_TECNICA",
+        "alerta_contradiccion": false,
+        "motivo_decision": "Falla física u operativa confirmada visualmente en equipo con impacto crítico en la atención clínica."
+      }
+    }
+  },
+  {
+    "escenario_id": "ESCENARIO_2_AMBIGUO_DOC_BORROSO",
+    "titulo": "2. Texto Ambiguo + Documento Ilegible / Recortado",
+    "cumplio_criterios": true,
+    "respuesta_api": {
+      "ticket_id": "TCK-76F1A7A6",
+      "fecha_procesamiento": "2026-11-24T17:05:09.692192+00:00",
+      "tiempo_procesamiento_ms": 13.44,
+      "nlp": {
+        "texto_original": "hola ayuda con esto porfa no pasa",
+        "intencion": "INTENCION_AMBIGUA",
+        "intencion_base": "OBSERVACION_DOCUMENTO_O_MUESTRA",
+        "confianza_intencion": 0.6069,
+        "es_ambigua": true,
+        "sentimiento": "NEGATIVO",
+        "confianza_sentimiento": 0.6647,
+        "entidades": {
+          "sede": "NONE",
+          "equipo_insumo": "NONE",
+          "tipo_documento": "NONE",
+          "urgencia": "MEDIA"
+        },
+        "distribucion_probabilidades": {
+          "CONSULTA_GENERAL_SERVICIO": 0.0121,
+          "GESTION_CITA_O_TURNO": 0.0224,
+          "OBSERVACION_DOCUMENTO_O_MUESTRA": 0.6069,
+          "REPORTE_FALLA_EQUIPO": 0.3587
+        }
+      },
+      "vision": {
+        "clase_imagen": "DOCUMENTO_BORROSO_O_INCOMPLETO",
+        "confianza_imagen": 0.9998,
+        "es_confiable": true,
+        "top3": [
+          {
+            "clase": "DOCUMENTO_BORROSO_O_INCOMPLETO",
+            "confianza": 0.9998
+          },
+          {
+            "clase": "INSUMO_O_ETIQUETA_OK",
+            "confianza": 0.0001
+          },
+          {
+            "clase": "EQUIPO_O_PANTALLA_CON_FALLA",
+            "confianza": 0.0
+          }
+        ]
+      },
+      "triaje": {
+        "prioridad": "MEDIA",
+        "cola_asignada": "Validación Documental / Recepción",
+        "accion_sugerida": "SOLICITAR_NUEVA_IMAGEN",
+        "alerta_contradiccion": false,
+        "motivo_decision": "Texto del ticket ambiguo y documento adjunto ilegible o incompleto; se requiere asistencia y reenvío guiado."
+      }
+    }
+  },
+  {
+    "escenario_id": "ESCENARIO_3_CONSULTA_GENERAL_LIMPIA",
+    "titulo": "3. Consulta General con Documento Nítido / Limpio",
+    "cumplio_criterios": true,
+    "respuesta_api": {
+      "ticket_id": "TCK-3FCCE705",
+      "fecha_procesamiento": "2026-11-24T17:05:09.722788+00:00",
+      "tiempo_procesamiento_ms": 12.42,
+      "nlp": {
+        "texto_original": "Buenos días, quisiera consultar cuáles son los requisitos de ayuno y horarios para la toma de muestras",
+        "intencion": "CONSULTA_GENERAL_SERVICIO",
+        "intencion_base": "CONSULTA_GENERAL_SERVICIO",
+        "confianza_intencion": 0.8817,
+        "es_ambigua": false,
+        "sentimiento": "NEUTRAL",
+        "confianza_sentimiento": 0.4781,
+        "entidades": {
+          "sede": "NONE",
+          "equipo_insumo": "NONE",
+          "tipo_documento": "NONE",
+          "urgencia": "MEDIA"
+        },
+        "distribucion_probabilidades": {
+          "CONSULTA_GENERAL_SERVICIO": 0.8817,
+          "GESTION_CITA_O_TURNO": 0.1031,
+          "OBSERVACION_DOCUMENTO_O_MUESTRA": 0.0122,
+          "REPORTE_FALLA_EQUIPO": 0.003
+        }
+      },
+      "vision": {
+        "clase_imagen": "DOCUMENTO_LEGIBLE",
+        "confianza_imagen": 1.0,
+        "es_confiable": true,
+        "top3": [
+          {
+            "clase": "DOCUMENTO_LEGIBLE",
+            "confianza": 1.0
+          },
+          {
+            "clase": "DOCUMENTO_BORROSO_O_INCOMPLETO",
+            "confianza": 0.0
+          },
+          {
+            "clase": "EQUIPO_O_PANTALLA_CON_FALLA",
+            "confianza": 0.0
+          }
+        ]
+      },
+      "triaje": {
+        "prioridad": "BAJA",
+        "cola_asignada": "Atención al Paciente / Informes",
+        "accion_sugerida": "RESPONDER_CONSULTA_INFORMATIVA",
+        "alerta_contradiccion": false,
+        "motivo_decision": "Consulta informativa de servicios o requisitos sin anomalías operativas ni incidencias en la evidencia adjunta."
+      }
+    }
+  },
+  {
+    "escenario_id": "ESCENARIO_4_CONTRADICCION_FALLA_VS_OK",
+    "titulo": "4. Contradicción: Texto reporta Falla pero Imagen muestra Insumo OK",
+    "cumplio_criterios": true,
+    "respuesta_api": {
+      "ticket_id": "TCK-9187BC61",
+      "fecha_procesamiento": "2026-11-24T17:05:09.753771+00:00",
+      "tiempo_procesamiento_ms": 12.17,
+      "nlp": {
+        "texto_original": "El escáner de código de barras está totalmente roto y no lee ninguna muestra en Consultorio 1",
+        "intencion": "REPORTE_FALLA_EQUIPO",
+        "intencion_base": "REPORTE_FALLA_EQUIPO",
+        "confianza_intencion": 0.6717,
+        "es_ambigua": false,
+        "sentimiento": "NEGATIVO",
+        "confianza_sentimiento": 0.5697,
+        "entidades": {
+          "sede": "Consultorio 1",
+          "equipo_insumo": "lector de código de barras",
+          "tipo_documento": "NONE",
+          "urgencia": "MEDIA"
+        },
+        "distribucion_probabilidades": {
+          "CONSULTA_GENERAL_SERVICIO": 0.0048,
+          "GESTION_CITA_O_TURNO": 0.011,
+          "OBSERVACION_DOCUMENTO_O_MUESTRA": 0.3125,
+          "REPORTE_FALLA_EQUIPO": 0.6717
+        }
+      },
+      "vision": {
+        "clase_imagen": "INSUMO_O_ETIQUETA_OK",
+        "confianza_imagen": 1.0,
+        "es_confiable": true,
+        "top3": [
+          {
+            "clase": "INSUMO_O_ETIQUETA_OK",
+            "confianza": 1.0
+          },
+          {
+            "clase": "DOCUMENTO_BORROSO_O_INCOMPLETO",
+            "confianza": 0.0
+          },
+          {
+            "clase": "EQUIPO_O_PANTALLA_CON_FALLA",
+            "confianza": 0.0
+          }
+        ]
+      },
+      "triaje": {
+        "prioridad": "MEDIA",
+        "cola_asignada": "Revisión Asistida / Mesa de Ayuda",
+        "accion_sugerida": "VERIFICAR_INCOHERENCIA_EVIDENCIA",
+        "alerta_contradiccion": true,
+        "motivo_decision": "Contradicción detectada: El texto reporta falla de equipo pero la imagen adjunta muestra un elemento en estado normal (INSUMO_O_ETIQUETA_OK). Requiere validación por operador."
+      }
+    }
+  },
+  {
+    "escenario_id": "ESCENARIO_5_CONTRADICCION_TRAMITE_VS_ROTO",
+    "titulo": "5. Contradicción: Solicitud de Trámite/Cita pero Documento Ilegible/Roto",
+    "cumplio_criterios": true,
+    "respuesta_api": {
+      "ticket_id": "TCK-982D0CB0",
+      "fecha_procesamiento": "2026-11-24T17:05:09.770032+00:00",
+      "tiempo_procesamiento_ms": 11.2,
+      "nlp": {
+        "texto_original": "Adjunto mi orden médica clara para adelantar cita urgente en Sede Central",
+        "intencion": "GESTION_CITA_O_TURNO",
+        "intencion_base": "GESTION_CITA_O_TURNO",
+        "confianza_intencion": 0.7085,
+        "es_ambigua": false,
+        "sentimiento": "NEUTRAL",
+        "confianza_sentimiento": 0.5298,
+        "entidades": {
+          "sede": "Sede Central",
+          "equipo_insumo": "NONE",
+          "tipo_documento": "orden médica",
+          "urgencia": "ALTA"
+        },
+        "distribucion_probabilidades": {
+          "CONSULTA_GENERAL_SERVICIO": 0.0138,
+          "GESTION_CITA_O_TURNO": 0.7085,
+          "OBSERVACION_DOCUMENTO_O_MUESTRA": 0.2759,
+          "REPORTE_FALLA_EQUIPO": 0.0018
+        }
+      },
+      "vision": {
+        "clase_imagen": "DOCUMENTO_BORROSO_O_INCOMPLETO",
+        "confianza_imagen": 1.0,
+        "es_confiable": true,
+        "top3": [
+          {
+            "clase": "DOCUMENTO_BORROSO_O_INCOMPLETO",
+            "confianza": 1.0
+          },
+          {
+            "clase": "INSUMO_O_ETIQUETA_OK",
+            "confianza": 0.0
+          },
+          {
+            "clase": "EQUIPO_O_PANTALLA_CON_FALLA",
+            "confianza": 0.0
+          }
+        ]
+      },
+      "triaje": {
+        "prioridad": "MEDIA",
+        "cola_asignada": "Validación Documental / Recepción",
+        "accion_sugerida": "SOLICITAR_NUEVA_IMAGEN",
+        "alerta_contradiccion": true,
+        "motivo_decision": "Evidencia documental ilegible, recortada o con reflejos. Contradicción: Se solicitó gestión de cita pero el soporte adjunto no es válido. Se solicita reenvío de nueva fotografía nítida para continuar el trámite."
+      }
+    }
+  },
+  {
+    "escenario_id": "ESCENARIO_6_GESTION_CITA_VALIDA",
+    "titulo": "6. Gestión de Cita Válida con Documento Legible",
+    "cumplio_criterios": true,
+    "respuesta_api": {
+      "ticket_id": "TCK-CBD66AFF",
+      "fecha_procesamiento": "2026-11-24T17:05:09.800163+00:00",
+      "tiempo_procesamiento_ms": 13.15,
+      "nlp": {
+        "texto_original": "Buenas tardes, solicito por favor reprogramar mi cita de control en Sede Sur para la próxima semana",
+        "intencion": "GESTION_CITA_O_TURNO",
+        "intencion_base": "GESTION_CITA_O_TURNO",
+        "confianza_intencion": 0.9525,
+        "es_ambigua": false,
+        "sentimiento": "NEUTRAL",
+        "confianza_sentimiento": 0.5756,
+        "entidades": {
+          "sede": "Sede Sur",
+          "equipo_insumo": "NONE",
+          "tipo_documento": "NONE",
+          "urgencia": "MEDIA"
+        },
+        "distribucion_probabilidades": {
+          "CONSULTA_GENERAL_SERVICIO": 0.0275,
+          "GESTION_CITA_O_TURNO": 0.9525,
+          "OBSERVACION_DOCUMENTO_O_MUESTRA": 0.0126,
+          "REPORTE_FALLA_EQUIPO": 0.0074
+        }
+      },
+      "vision": {
+        "clase_imagen": "DOCUMENTO_LEGIBLE",
+        "confianza_imagen": 1.0,
+        "es_confiable": true,
+        "top3": [
+          {
+            "clase": "DOCUMENTO_LEGIBLE",
+            "confianza": 1.0
+          },
+          {
+            "clase": "DOCUMENTO_BORROSO_O_INCOMPLETO",
+            "confianza": 0.0
+          },
+          {
+            "clase": "INSUMO_O_ETIQUETA_OK",
+            "confianza": 0.0
+          }
+        ]
+      },
+      "triaje": {
+        "prioridad": "BAJA",
+        "cola_asignada": "Admisión y Gestión de Citas",
+        "accion_sugerida": "PROCESAR_SOLICITUD_ESTANDAR",
+        "alerta_contradiccion": false,
+        "motivo_decision": "Solicitud de trámite o gestión clínica con soporte documental e insumos válidos y legibles listos para atención."
+      }
+    }
+  }
+]
